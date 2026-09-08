@@ -44,6 +44,14 @@ public class HuluwaLine implements Sortable {
         return get(index).getRank();
     }
 
+    Huluwa[] membersInPositionOrder() {
+        Huluwa[] ordered = new Huluwa[members.length];
+        for (int i = 0; i < ordered.length; i++) {
+            ordered[i] = atPosition(i + 1);
+        }
+        return ordered;
+    }
+
     Huluwa memberAt(int index) {
         return members[index];
     }

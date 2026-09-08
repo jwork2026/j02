@@ -7,7 +7,7 @@ MAIN_CLASS := Main
 SOURCES := $(wildcard $(SOURCE_DIR)/*.java)
 COMPILE_MARKER := $(OUTPUT_DIR)/.compiled
 
-.PHONY: all compile run clean
+.PHONY: all compile run visual clean
 
 all: run
 
@@ -20,6 +20,9 @@ $(COMPILE_MARKER): $(SOURCES) Makefile
 
 run: compile
 	$(JAVA) -cp $(OUTPUT_DIR) $(MAIN_CLASS)
+
+visual: compile
+	$(JAVA) -cp $(OUTPUT_DIR) VisualMain
 
 clean:
 	rm -rf $(OUTPUT_DIR)
