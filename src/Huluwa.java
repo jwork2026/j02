@@ -2,7 +2,7 @@
  * 七个葫芦娃。
  *
  * <p>排行、称呼和颜色是葫芦娃固有的身份信息；
- * 他在队伍中的位置不属于这个类型。</p>
+ * 位置行为由葫芦娃响应老爷爷的指令完成，具体位置关系由队伍维护。</p>
  */
 public class Huluwa {
     public static final Huluwa FIRST = new Huluwa(1, "大娃", "红色");
@@ -20,6 +20,8 @@ public class Huluwa {
     private final int rank;
     private final String name;
     private final String color;
+    private HuluwaLine line;
+    private int position;
 
     private Huluwa(int rank, String name, String color) {
         this.rank = rank;
@@ -47,14 +49,31 @@ public class Huluwa {
         return "我是" + name + "，代表色是" + color + "。";
     }
 
-    public void exchangeWith(HuluwaLine line, Huluwa other) {
-        int myIndex = line.indexOf(this);
-        int otherIndex = line.indexOf(other);
-        if (myIndex < 0 || otherIndex < 0) {
-            throw new IllegalArgumentException("葫芦娃不在这条线里。");
-        }
+    public int getPosition() {
+        return position;
+    }
 
-        line.set(myIndex, other);
-        line.set(otherIndex, this);
+    /**
+     * 与另一位葫芦娃交换位置。
+     */
+    public void exchangePositionWith(Huluwa other) {
+        checkLine(other);
+        int temporary = position;
+        position = other.position;
+        other.position = temporary;
+    }
+
+    void join(HuluwaLine line, int position) {
+        if (this.line != null && this.line != line) {
+            throw new IllegalStateException(name + "已经站在另一条队伍里。");
+        }
+        this.line = line;
+        this.position = position;
+    }
+
+    private void checkLine(Huluwa other) {
+        if (other == null || line == null || other.line != line) {
+            throw new IllegalArgumentException("两位葫芦娃不在同一条队伍里。");
+        }
     }
 }

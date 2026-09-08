@@ -10,7 +10,7 @@ public class Main {
                 Huluwa.FIFTH
         );
         Grandpa grandpa = new Grandpa();
-        grandpa.learn(new BubbleSortKnowledge());
+        grandpa.learn(new BubbleSortAlgorithm());
 
         System.out.println("老爷爷看见七个葫芦娃站成一排：");
         line.print();

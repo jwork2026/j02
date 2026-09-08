@@ -2,5 +2,8 @@
  * 排序知识。
  */
 public interface SortKnowledge {
-    void sort(HuluwaLine line, Grandpa grandpa);
+    /**
+     * 根据可排序对象生成排序计划。
+     */
+    SortPlan sort(Sortable sortable);
 }
