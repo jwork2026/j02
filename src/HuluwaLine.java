@@ -25,6 +25,13 @@ public class HuluwaLine implements Sortable {
         return members.length;
     }
 
+    /**
+     * 判断葫芦娃是否属于这条队伍。
+     */
+    public boolean contains(Huluwa member) {
+        return indexOf(member) >= 0;
+    }
+
     public Huluwa get(int index) {
         return atPosition(index + 1);
     }

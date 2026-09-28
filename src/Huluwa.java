@@ -57,7 +57,7 @@ public class Huluwa {
      * 与另一位葫芦娃交换位置。
      */
     public void exchangePositionWith(Huluwa other) {
-        checkLine(other);
+        checkCanExchangeWith(other);
         int temporary = position;
         position = other.position;
         other.position = temporary;
@@ -71,8 +71,8 @@ public class Huluwa {
         this.position = position;
     }
 
-    private void checkLine(Huluwa other) {
-        if (other == null || line == null || other.line != line) {
+    private void checkCanExchangeWith(Huluwa other) {
+        if (other == null || line == null || !line.contains(other)) {
             throw new IllegalArgumentException("两位葫芦娃不在同一条队伍里。");
         }
     }
